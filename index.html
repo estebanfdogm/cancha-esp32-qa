@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#101713"><title>CANCHA · Control de robots</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="demo-banner"><span class="live-dot"></span><span id="modeLabel">DEMOSTRACIÓN · SIN CONEXIÓN AL ROBOT</span><span class="platform">ANDROID / PC</span></div>
+<div class="app">
+  <aside class="sidebar">
+    <a class="brand" href="#" aria-label="Cancha, inicio"><span class="brand-mark">C<span>↗</span></span><span>CANCHA<small>ROBOT FOOTBALL CLUB</small></span></a>
+    <div class="nav-label">TU ZONA DE JUEGO</div>
+    <nav aria-label="Navegación principal">
+      <button class="nav-item active" data-page="control"><span>⌘</span> Mando <span class="nav-number">03</span></button>
+      <button class="nav-item" data-page="team"><span>▦</span> Mi equipo</button>
+      <button class="nav-item" data-page="settings"><span>⚙</span> Ajustes</button>
+    </nav>
+    <div class="sidebar-bottom"><span class="tag">ESP32-C3</span><p>Pequeño robot.<br>Grandes jugadas.</p><span class="muted">DISEÑADO PARA TU CANCHA</span></div>
+  </aside>
+  <main>
+    <header class="topbar"><span class="breadcrumb">MI EQUIPO <span>/</span> <b id="breadcrumb">MANDO</b></span><span class="top-status" id="topStatus"><span class="status-dot"></span> Robot desconectado</span></header>
+    <section id="control" class="page">
+      <div class="page-heading"><div><div class="eyebrow">EL JUEGO ESTÁ EN TUS MANOS</div><h1>A la cancha<span>.</span></h1><p>Conecta. Habilita. Haz tu jugada.</p></div><button class="button light" id="connectBtn"><span>ᛒ</span> Conectar robot <span>↗</span></button></div>
+      <div class="robot-strip"><div class="robot-avatar">03</div><div class="robot-name"><h2>Rayo <span class="tag">CELULAR + PC</span></h2><span>ESP32-C3 Super Mini · Bluetooth LE</span></div><button class="text-button" id="demoBtn">Probar demo ↗</button></div>
+      <div class="controller">
+        <div class="controller-header"><div><span class="status-dot" id="armDot"></span><span id="armText">EN ESPERA</span></div><span id="linkText">Conecta tu robot o prueba la demo</span><span class="mode-tag" id="deviceMode">CONTROL MANUAL</span></div>
+        <div class="controller-body">
+          <section class="movement"><div class="control-caption"><span>MOVIMIENTO</span><span class="key-hint">W A S D</span></div>
+            <div class="joystick" id="joystick" role="group" aria-label="Joystick táctil de movimiento; en PC usa W A S D o las flechas"><div class="joy-ring"></div><span class="joy-label up">AVANZA</span><span class="joy-label down">RETROCEDE</span><span class="joy-label left">‹</span><span class="joy-label right">›</span><div class="cross x"></div><div class="cross y"></div><div class="knob" id="knob"><span>✣</span></div></div>
+            <div class="movement-footer"><span id="direction">En el centro</span><span class="muted">Suelta para detener</span></div>
+          </section>
+          <section class="pitch-zone" aria-label="Vista del robot y órdenes de motores"><div class="pitch"><div class="pitch-line middle"></div><div class="pitch-circle"></div><div class="goal top"></div><div class="goal bottom"></div><div class="robot-model" id="robotModel"><span class="wheel l"></span><span class="wheel r"></span><div class="robot-shell"><span class="robot-eye"></span><b>03</b><span class="robot-nose"></span></div></div><span class="pitch-tag" id="pitchTag">VISTA DE ÓRDENES</span></div><div class="motor-values"><div><small>MOTOR IZQ.</small><b id="leftValue">0 <span>PWM</span></b></div><div class="motor-divider"></div><div><small>MOTOR DER.</small><b id="rightValue">0 <span>PWM</span></b></div></div></section>
+          <section class="actions"><div class="control-caption"><span>PATEADOR</span><span class="key-hint">ESPACIO</span></div><button class="kick-button" id="kickBtn" disabled><span class="kick-arrow">↗</span><strong>PATEAR</strong><small>Mantén pulsado</small></button><div class="kick-note" id="kickNote">Listo para tu próxima jugada</div></section>
+        </div>
+        <div class="controller-bottom"><label class="power-control" for="power"><span>POTENCIA MÁXIMA <b id="powerValue">35 %</b></span><input type="range" id="power" min="10" max="35" value="35" step="5"><span class="power-foot"><span>Suave</span><span>Límite inicial</span></span></label><div class="run-actions"><button class="button enable" id="armBtn" disabled>Habilitar motores <span>→</span></button><button class="stop-button" id="stopBtn"><span>■</span> PARAR <kbd>ESC</kbd></button></div></div>
+      </div>
+      <div class="bottom-notes"><span><span class="tiny-dot"></span> La pérdida de enlace exige habilitar de nuevo</span><span id="inputHint">PC: WASD / flechas · Espacio: pateador · Esc: parar</span></div>
+      <p id="message" class="message" role="status" aria-live="polite">Elige «Probar demo» para explorar el control sin mover ningún robot.</p>
+    </section>
+    <section id="team" class="page" hidden><div class="page-heading"><div><div class="eyebrow">TRES ROBOTS. UN EQUIPO.</div><h1>Tu alineación<span>.</span></h1><p>Un control distinto para cada jugador.</p></div><span class="tag">EQUIPO PROPUESTO</span></div><div class="team-grid"><article class="team-card"><div class="jersey">01</div><span class="tag">MANDO PLAY</span><h2>Robot 01</h2><p>Control independiente con su mando.</p><span class="muted">Estado no disponible desde esta app</span></article><article class="team-card"><div class="jersey">02</div><span class="tag">MANDO PLAY</span><h2>Robot 02</h2><p>Control independiente con su mando.</p><span class="muted">Estado no disponible desde esta app</span></article><article class="team-card featured"><div class="jersey">03</div><span class="tag">BLUETOOTH LE</span><h2>Rayo</h2><p>ESP32-C3 Super Mini. Desde Android o PC.</p><button class="button light" id="teamControl">Abrir mando ↗</button></article></div></section>
+    <section id="settings" class="page" hidden><div class="page-heading"><div><div class="eyebrow">A TU MANERA</div><h1>Afina el control<span>.</span></h1><p>El movimiento empieza con una buena configuración.</p></div></div><div class="settings-panel"><h2>Conexión</h2><p>Un solo celular o PC conectado al robot a la vez. El botón Conectar usa Bluetooth LE real; la demo funciona sin hardware.</p><label class="setting-row"><span><b>Invertir giro</b><small>Cambia izquierda por derecha en el joystick.</small></span><input type="checkbox" id="invertSteering"></label><label class="setting-row"><span><b>Invertir avance</b><small>Cambia adelante por atrás en el joystick.</small></span><input type="checkbox" id="invertThrottle"></label><div class="setting-row"><span><b>Potencia inicial limitada al 35 %</b><small>Es un límite de PWM, no una medición de velocidad.</small></span><span class="tag">90 / 255</span></div><div class="setting-row"><span><b>Batería del robot</b><small>Este montaje no incluye medición de batería.</small></span><span class="muted">Sin sensor</span></div><h2>Usar en Android</h2><p>Esta entrega es el diseño interactivo y el control web para PC. La aplicación Android nativa y su APK están pendientes. La misma interfaz puede probarse con Chrome Android si se sirve desde HTTPS.</p><h2>Antes de conectar</h2><p>El robot necesita el firmware CanchaC3 incluido. El firmware inicia con las salidas físicas bloqueadas hasta verificar el cableado y la calibración del servo.</p></div></section>
+    <footer><b>CANCHA</b><span>HECHO PARA JUGAR EN EQUIPO</span><span>v0.1 / DISEÑO + CONTROL BLE</span></footer>
+  </main>
+</div>
+<script src="protocol.js"></script><script src="controller.js"></script>
+</body></html>
